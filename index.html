@@ -30,7 +30,7 @@
   --max:1080px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:64px}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
 body{font-family:'Pretendard Variable',Pretendard,-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
   color:var(--ink);background:var(--bg);line-height:1.7;-webkit-font-smoothing:antialiased;
   word-break:keep-all;overflow-wrap:break-word}
@@ -43,14 +43,26 @@ a{color:inherit;text-decoration:none}
   backdrop-filter:blur(10px);border-bottom:1px solid var(--line);transform:translateY(-100%);
   transition:transform .3s ease}
 .nav.on{transform:translateY(0)}
-.nav .wrap{height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.nav .brand{font-size:15px;font-weight:700;letter-spacing:-.4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav .wrap{height:60px;display:flex;align-items:center;gap:14px;padding:0 18px}
+.nav .brand{font-size:14px;font-weight:800;letter-spacing:-.4px;white-space:nowrap;flex:none}
 .nav .brand em{font-style:normal;color:var(--red)}
-.nav .links{display:flex;align-items:center;gap:22px;font-size:14px;font-weight:600;color:var(--ink-2)}
-.nav .links a:hover{color:var(--red)}
-.nav-cta{background:var(--red);color:#fff;padding:10px 20px;border-radius:999px;font-size:14px;font-weight:700;white-space:nowrap}
+.navjump{display:flex;align-items:center;gap:7px;flex:1;min-width:0;overflow-x:auto;
+  scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch}
+.navjump::-webkit-scrollbar{display:none}
+.navjump a{flex:none;padding:8px 15px;border-radius:999px;font-size:14px;font-weight:700;
+  letter-spacing:-.3px;color:var(--ink-2);border:1px solid var(--line);background:#fff;
+  white-space:nowrap;transition:.15s}
+.navjump a:hover{border-color:var(--red);color:var(--red)}
+.navjump a.cur{background:var(--red);border-color:var(--red);color:#fff}
+.nav-cta{background:var(--red);color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;
+  font-weight:800;white-space:nowrap;flex:none}
 .nav-cta:hover{background:var(--red-dark)}
-@media(max-width:860px){.nav .links{display:none}}
+@media(max-width:900px){.nav .brand{display:none}}
+@media(max-width:520px){
+  .nav .wrap{gap:8px;padding:0 12px}
+  .navjump a{padding:8px 12px;font-size:13.5px}
+  .nav-cta{padding:9px 14px;font-size:13px}
+}
 
 /* ---------- 히어로 ---------- */
 .hero{position:relative;background:var(--red);color:#fff;overflow:hidden;padding:104px 0 84px}
@@ -235,12 +247,12 @@ footer .ft{text-align:center;font-size:13px;color:var(--ink-3);line-height:1.9}
 <body>
 
 <div class="nav" id="nav"><div class="wrap">
-  <div class="brand">2026 인제대학교 · <em>(재)김해FC</em> 웹툰·캐릭터 공모전</div>
-  <nav class="links">
+  <div class="brand">2026 <em>웹툰·캐릭터 공모전</em></div>
+  <nav class="navjump" id="navjump">
     <a href="#about">공모 개요</a>
     <a href="#category">공모 부문</a>
     <a href="#prize">시상 내역</a>
-    <a href="#schedule">일정</a>
+    <a href="#schedule">공모 일정</a>
     <a href="#apply">신청 방법</a>
   </nav>
   <a class="nav-cta js-apply" href="#apply">신청하기</a>
@@ -675,12 +687,37 @@ var CLOSE_AT = new Date("2026-09-28T00:00:00+09:00");  /* 9/27 24:00 */
     if (now >= s && now <= e) its[j].classList.add("on");
   }
 
-  /* --- 스크롤 시 상단바 --- */
+  /* --- 상단 고정바 + 현재 섹션 표시 --- */
   var nav = document.getElementById("nav");
+  var jumpBox = document.getElementById("navjump");
+  var jumpLinks = jumpBox.querySelectorAll("a");
+  var ids = ["about","category","prize","schedule","apply"];
+  var secs = [];
+  for (var s=0;s<ids.length;s++) secs.push(document.getElementById(ids[s]));
+  var lastIdx = -2;
+
   function onScroll(){
-    if (window.scrollY > 420) nav.classList.add("on"); else nav.classList.remove("on");
+    if (window.scrollY > 340) nav.classList.add("on"); else nav.classList.remove("on");
+
+    var y = window.scrollY + 110, idx = -1;
+    for (var i=0;i<secs.length;i++){
+      if (secs[i] && secs[i].offsetTop <= y) idx = i;
+    }
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 60) idx = secs.length - 1;
+    if (idx === lastIdx) return;
+    lastIdx = idx;
+    for (var j=0;j<jumpLinks.length;j++){
+      if (j === idx) jumpLinks[j].classList.add("cur");
+      else jumpLinks[j].classList.remove("cur");
+    }
+    if (idx >= 0 && jumpBox.scrollWidth > jumpBox.clientWidth + 4){
+      var el = jumpLinks[idx];
+      var t = el.offsetLeft - (jumpBox.clientWidth - el.offsetWidth) / 2;
+      jumpBox.scrollLeft = Math.max(0, t);
+    }
   }
   window.addEventListener("scroll", onScroll, {passive:true});
+  window.addEventListener("resize", function(){ lastIdx = -2; onScroll(); }, {passive:true});
   onScroll();
 })();
 </script>
