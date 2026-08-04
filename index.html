@@ -70,7 +70,13 @@ a{color:inherit;text-decoration:none}
   border-radius:12px;padding:11px 20px;margin-top:26px}
 .dday .t{font-size:13px;font-weight:600;opacity:.75}
 .dday .n{font-size:26px;font-weight:800;color:var(--gold-soft);letter-spacing:-1px}
-.hero .btns{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap}
+.hero .btns{margin-top:34px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.jump{display:flex;gap:9px;flex-wrap:wrap}
+.jump a{display:inline-flex;align-items:center;gap:7px;border:1.5px solid rgba(255,255,255,.5);
+  border-radius:10px;padding:11px 17px;font-size:14.5px;font-weight:700;letter-spacing:-.3px;
+  color:#fff;transition:.15s;white-space:nowrap}
+.jump a:hover{background:rgba(255,255,255,.14);border-color:#fff}
+.jump a i{font-style:normal;font-size:11px;opacity:.75}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;
   font-weight:700;letter-spacing:-.3px;transition:.15s;border:2px solid transparent;cursor:pointer}
 .btn-lg{padding:17px 38px;font-size:17px}
@@ -211,6 +217,11 @@ footer .ft{text-align:center;font-size:13px;color:var(--ink-3);line-height:1.9}
 .mobile-cta{position:fixed;left:0;right:0;bottom:0;z-index:99;background:#fff;
   border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom));display:none}
 .mobile-cta .btn{width:100%;padding:16px;font-size:16px}
+@media(max-width:820px){
+  .hero .btns{flex-direction:column;align-items:stretch}
+  .hero .btns .btn{width:100%}
+  .jump a{flex:1 1 calc(50% - 5px);justify-content:center;font-size:14px;padding:12px 10px}
+}
 @media(max-width:640px){
   .mobile-cta{display:block}
   footer{padding-bottom:110px}
@@ -290,8 +301,14 @@ footer .ft{text-align:center;font-size:13px;color:var(--ink-3);line-height:1.9}
     <div class="dday" id="dday"><span class="t">접수 마감까지</span><span class="n">D-</span></div>
 
     <div class="btns">
+      <div class="jump">
+        <a href="#about">공모 개요 <i>↓</i></a>
+        <a href="#category">공모 부문 <i>↓</i></a>
+        <a href="#prize">시상 내역 <i>↓</i></a>
+        <a href="#schedule">공모 일정 <i>↓</i></a>
+        <a href="#apply">신청 방법 <i>↓</i></a>
+      </div>
       <a class="btn btn-lg btn-primary js-apply" href="#apply">신청하기</a>
-      <a class="btn btn-lg btn-ghost" href="#about">공모 요강 보기</a>
     </div>
   </div>
 </header>
@@ -599,7 +616,7 @@ footer .ft{text-align:center;font-size:13px;color:var(--ink-3);line-height:1.9}
    ▼ 구글폼 주소를 아래 따옴표 안에 붙여넣으세요. 이 한 줄만 바꾸면
      페이지의 모든 [신청하기] 버튼에 적용됩니다.
    ============================================================ */
-var APPLY_URL = "";   /* 예: "https://forms.gle/abcdefg12345" */
+var APPLY_URL = "https://docs.google.com/forms/d/1UI_t03hVCejnUx_OqeXLQ9jGLXfSPL-gpCesZRBvnuk/viewform";
 
 var OPEN_AT  = new Date("2026-08-10T00:00:00+09:00");
 var CLOSE_AT = new Date("2026-09-28T00:00:00+09:00");  /* 9/27 24:00 */
