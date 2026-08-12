@@ -117,9 +117,45 @@ a{color:inherit;text-decoration:none}
 .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
 .btn-ghost:hover{background:rgba(255,255,255,.12)}
 .btn-dark{background:var(--red);color:#fff}
+.btn-out{background:#fff;color:var(--navy);border-color:rgba(23,57,140,.4)}
+.btn-out:hover{background:var(--navy);border-color:var(--navy);color:#fff}
+.btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+.btn-line:hover{background:rgba(255,255,255,.14)}
+.btn .ic{width:16px;height:16px;flex:none}
+.cta .btns2{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .btn-dark:hover{background:var(--red-dark)}
 .off{opacity:.55;cursor:not-allowed;pointer-events:none}
 .nav-cta.off{background:var(--ink-3)}
+
+/* ---------- 별첨 보기 버튼 + 모달 ---------- */
+.docbtn{display:inline-flex;align-items:center;gap:5px;margin-left:5px;padding:2px 10px;border-radius:999px;
+  border:1.5px solid var(--red);background:#fff;color:var(--red);font-size:12.5px;font-weight:700;
+  letter-spacing:-.2px;cursor:pointer;vertical-align:baseline;line-height:1.6;transition:.15s;font-family:inherit}
+.docbtn:hover{background:var(--red);color:#fff}
+.docbtn svg{width:11px;height:11px}
+.modal{position:fixed;inset:0;z-index:200;display:none;background:rgba(23,9,8,.62);padding:22px}
+.modal.on{display:flex;align-items:center;justify-content:center}
+.modal-box{background:#fff;border-radius:14px;width:min(940px,100%);height:min(88vh,900px);
+  display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.modal-hd{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);flex:none}
+.modal-hd h4{font-size:15.5px;font-weight:800;letter-spacing:-.4px;flex:1;min-width:0;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.modal-hd .dl{flex:none;padding:8px 15px;border-radius:9px;background:var(--red);color:#fff;
+  font-size:13px;font-weight:700;white-space:nowrap}
+.modal-hd .dl:hover{background:var(--red-dark)}
+.modal-hd .x{flex:none;width:32px;height:32px;border:0;background:transparent;font-size:22px;line-height:1;
+  color:var(--ink-3);cursor:pointer;border-radius:8px;font-family:inherit}
+.modal-hd .x:hover{background:var(--bg-soft);color:var(--ink)}
+.modal-bd{flex:1;min-height:0;background:#525659}
+.modal-bd iframe{width:100%;height:100%;border:0;display:block}
+.modal-note{display:none;padding:34px 24px;text-align:center;color:#fff;font-size:14.5px;line-height:1.8}
+.modal-note a{color:var(--gold-soft);font-weight:700;text-decoration:underline}
+@media(max-width:640px){
+  .modal{padding:0}
+  .modal-box{height:100%;border-radius:0;width:100%}
+  .modal-bd iframe{display:none}
+  .modal-note{display:block}
+}
 
 /* ---------- 섹션 공통 ---------- */
 section{padding:84px 0}
@@ -169,6 +205,27 @@ h2.tit{font-size:clamp(24px,4vw,36px);font-weight:800;letter-spacing:-1.2px;line
 .prize .hi td b{color:var(--red)}
 .prize tfoot td{background:#FBF7F6;font-weight:700;font-size:14px;border-bottom:0}
 .prize-note{margin-top:14px;font-size:13px;color:var(--ink-3);line-height:1.7}
+.goods-h{margin-top:44px;font-size:19px;font-weight:800;letter-spacing:-.6px}
+.goods-h span{margin-left:8px;font-size:13.5px;font-weight:600;color:var(--ink-3);letter-spacing:-.2px}
+.goods{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);
+  border-radius:14px;overflow:hidden;margin-top:14px;min-width:640px}
+.goods th,.goods td{border-bottom:1px solid var(--line);border-right:1px solid var(--line);
+  padding:14px 16px;font-size:14px;vertical-align:top;text-align:left}
+.goods th:last-child,.goods td:last-child{border-right:0}
+.goods tr:last-child th,.goods tr:last-child td{border-bottom:0}
+.goods thead th{background:var(--ink);color:#fff;font-size:13.5px;font-weight:700;
+  letter-spacing:-.3px;text-align:center}
+.goods tbody th{background:#FBF7F6;font-weight:800;letter-spacing:-.3px;text-align:center;white-space:nowrap}
+.goods tbody th small{display:block;margin-top:3px;font-size:12px;font-weight:600;color:var(--ink-3)}
+.goods tr.hi td{background:#FFF9E8}
+.goods tr.hi th{background:#FBF3DC}
+.goods ul{list-style:none;padding:0;margin:0}
+.goods li{position:relative;padding-left:12px;line-height:1.65;color:var(--ink-2)}
+.goods li+li{margin-top:5px}
+.goods li:before{content:'';position:absolute;left:0;top:9px;width:4px;height:4px;
+  border-radius:50%;background:var(--red)}
+.goods li b{font-weight:700;color:var(--ink)}
+.goods .same{color:var(--ink-3);font-size:13.5px}
 .perks{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:26px}
 .perk{background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);padding:20px 22px}
 .perk h5{font-size:15px;font-weight:800;letter-spacing:-.4px;margin-bottom:8px}
@@ -365,6 +422,7 @@ footer .ft{text-align:center;font-size:13px;color:var(--ink-3);line-height:1.9}
         <a href="#schedule">공모 일정 <i>↓</i></a>
         <a href="#apply">신청 방법 <i>↓</i></a>
       </div>
+      <a class="btn btn-lg btn-out" href="notice.pdf" download="2026 All-City Campus 웹툰·캐릭터 공모전 공고문.pdf"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> 공고문 내려받기</a>
       <a class="btn btn-lg btn-dark js-apply" href="#apply">신청하기</a>
     </div>
   </div>
@@ -436,6 +494,7 @@ footer .ft{text-align:center;font-size:13px;color:var(--ink-3);line-height:1.9}
             <li>김해시 · 가야왕도의 역사성과 (재)김해FC 구단의 정체성이 함께 어우러진 구단 캐릭터</li>
             <li>성문 · 철의 불꽃 · 파형동기 · 방패 등 구단 엠블럼의 상징요소와 핵심가치를 참고</li>
             <li>브랜드 컬러 — Passion Red / Heritage Gold / Black</li>
+            <li>제작 전 참고자료 — 「디자인 참고 가이드」<button type="button" class="docbtn js-doc" data-f="annex6-design-guide.pdf" data-t="별첨 6 — 디자인 참고 가이드"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg> 보기</button> 「브랜드 아이덴티티 연계 방향」<button type="button" class="docbtn js-doc" data-f="annex7-brand-identity.pdf" data-t="별첨 7 — 브랜드 아이덴티티 연계 방향"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg> 보기</button></li>
           </ul>
           <div class="spec">
             <h4>제출 규격</h4>
@@ -473,7 +532,38 @@ footer .ft{text-align:center;font-size:13px;color:var(--ink-3);line-height:1.9}
         <tfoot><tr><td>시상 훈격</td><td>—</td><td>인제대학교 총장상</td><td>(재)김해FC 이사장상</td></tr></tfoot>
       </table>
     </div>
-    <p class="prize-note">※ 부상 — 2027시즌 전 홈경기 관람권, 친필 사인 유니폼, 롯데호텔(김해) 숙박권, 선수단 사인볼, 구단 머플러·기념품, 홈경기 행사 참여(시축 · 매치볼 딜리버리 · 승리의 하이파이브) 등이 등위별로 지급됩니다.<br>※ 일정 및 시상 내용은 기관 사정에 따라 변경될 수 있습니다.</p>
+    <p class="prize-note">※ 시상 규모 및 시상금은 변동될 수 있으며, 심사 결과 적합한 작품이 없을 경우 시상하지 않을 수 있습니다.<br>※ 일정 및 시상 내용은 기관 사정에 따라 변경될 수 있습니다.</p>
+
+
+    <h3 class="goods-h">(재)김해FC 시상 상품<span>상금·상장과 별도로 등위별 지급</span></h3>
+    <div style="overflow-x:auto">
+      <table class="goods">
+        <thead><tr><th style="width:96px">구분</th><th style="width:84px">수상작품수</th><th>웹툰</th><th>(재)김해FC 캐릭터</th></tr></thead>
+        <tbody>
+          <tr class="hi">
+            <th>대상</th><td style="text-align:center">1</td>
+            <td><ul><li>2027시즌 전 홈경기 <b>관람권(VIP)</b></li><li>친필 사인 유니폼</li><li>홈경기 행사 참여<br>(시축 · 승리의 하이파이브)</li></ul></td>
+            <td><ul><li>2027시즌 전 홈경기 <b>관람권(VIP)</b></li><li><b>롯데호텔(김해) 숙박권(스위트룸)</b></li><li>친필 사인 유니폼 액자 증정</li><li>홈경기 행사 참여<br>(시축 · 승리의 하이파이브)</li></ul></td>
+          </tr>
+          <tr>
+            <th>우수상</th><td style="text-align:center">1</td>
+            <td><ul><li>2027시즌 전 홈경기 관람권(프리미엄석)</li><li>선수단 친필 사인볼</li><li>홈경기 행사 참여<br>(승리의 하이파이브)</li></ul></td>
+            <td><ul><li>2027시즌 전 홈경기 관람권(프리미엄석)</li><li>선수단 친필 사인볼</li><li>홈경기 행사 참여<br>(매치볼 딜리버리 · 승리의 하이파이브)</li></ul></td>
+          </tr>
+          <tr>
+            <th>장려상</th><td style="text-align:center">2</td>
+            <td><ul><li>2027시즌 전 홈경기 관람권(일반석)</li><li>구단 머플러</li><li>홈경기 행사 참여<br>(승리의 하이파이브)</li></ul></td>
+            <td><ul><li>2027시즌 전 홈경기 관람권(일반석)</li><li>구단 머플러</li><li>홈경기 행사 참여<br>(승리의 하이파이브)</li></ul></td>
+          </tr>
+          <tr>
+            <th>입선</th><td style="text-align:center">3</td>
+            <td><ul><li>구단 기념품 3종</li><li>홈경기 행사 참여<br>(승리의 하이파이브)</li></ul></td>
+            <td><ul><li>구단 기념품 3종</li><li>홈경기 행사 참여<br>(승리의 하이파이브)</li></ul></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="prize-note">※ 시상 상품의 구체적 내용은 구단 사정에 따라 동급의 다른 상품으로 대체될 수 있습니다.</p>
 
     <div class="perks">
       <div class="perk">
@@ -584,7 +674,10 @@ footer .ft{text-align:center;font-size:13px;color:var(--ink-3);line-height:1.9}
   <div class="wrap">
     <h2>당신이 그린 캐릭터가<br><span class="g">(재)김해FC를 대표하는 얼굴</span>이 됩니다</h2>
     <p id="ctaSub">2026. 8. 18.(화) — 9. 27.(일) 24:00 접수</p>
-    <a class="btn btn-lg btn-primary js-apply" href="#" id="ctaBtn">신청하기</a>
+    <div class="btns2">
+      <a class="btn btn-lg btn-primary js-apply" href="#" id="ctaBtn">신청하기</a>
+      <a class="btn btn-lg btn-line" href="notice.pdf" download="2026 All-City Campus 웹툰·캐릭터 공모전 공고문.pdf"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> 공고문 전문(PDF)</a>
+    </div>
     <p class="warn">신청하기를 누르면 온라인 접수 폼으로 이동합니다.</p>
   </div>
 </div>
@@ -635,7 +728,7 @@ footer .ft{text-align:center;font-size:13px;color:var(--ink-3);line-height:1.9}
     </div>
 
     <div class="alert"><b>캐릭터 부문 응모 전 반드시 확인하세요.</b><br>
-    캐릭터 부문은 「디자인 참고 가이드」(공고문 별첨 7)의 브랜드 컬러와 모티브 키워드를 확인한 뒤 제작해 주세요. 김해시 기존 캐릭터(해동이 · 토더기)와 소재·형태가 겹치지 않는 구단 고유의 조형으로 재해석해야 합니다.</div>
+    캐릭터 부문은 「디자인 참고 가이드」(별첨 6)<button type="button" class="docbtn js-doc" data-f="annex6-design-guide.pdf" data-t="별첨 6 — 디자인 참고 가이드"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg> 보기</button> 및 「브랜드 아이덴티티 연계 방향」(별첨 7)<button type="button" class="docbtn js-doc" data-f="annex7-brand-identity.pdf" data-t="별첨 7 — 브랜드 아이덴티티 연계 방향"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg> 보기</button>을 확인한 뒤 제작해 주세요.</div>
   </div>
 </section>
 
@@ -674,6 +767,20 @@ footer .ft{text-align:center;font-size:13px;color:var(--ink-3);line-height:1.9}
     </p>
   </div>
 </footer>
+
+<div class="modal" id="docModal" role="dialog" aria-modal="true" aria-labelledby="docTitle">
+  <div class="modal-box">
+    <div class="modal-hd">
+      <h4 id="docTitle"></h4>
+      <a class="dl" id="docDl" href="#" download>내려받기</a>
+      <button type="button" class="x" id="docX" aria-label="닫기">&times;</button>
+    </div>
+    <div class="modal-bd">
+      <iframe id="docFrame" title="별첨 미리보기"></iframe>
+      <p class="modal-note">모바일에서는 미리보기가 지원되지 않습니다.<br>위 <b>내려받기</b> 버튼으로 파일을 열어 주세요.</p>
+    </div>
+  </div>
+</div>
 
 <div class="mobile-cta"><a class="btn btn-dark js-apply" href="#">신청하기</a></div>
 
@@ -732,6 +839,33 @@ var CLOSE_AT = new Date("2026-09-28T00:00:00+09:00");  /* 9/27 24:00 */
     var sub = document.getElementById("ctaSub");
     if (sub) sub.textContent = "접수가 마감되었습니다. 수상자 발표는 10. 26.(월) 예정입니다.";
   }
+
+  /* --- 별첨 보기 모달 --- */
+  var mo = document.getElementById("docModal"),
+      moT = document.getElementById("docTitle"),
+      moF = document.getElementById("docFrame"),
+      moD = document.getElementById("docDl");
+  function docOpen(file, title){
+    moT.textContent = title;
+    moD.href = file; moD.setAttribute("download", file);
+    moF.src = file + "#view=FitH";
+    mo.classList.add("on");
+    document.body.style.overflow = "hidden";
+  }
+  function docClose(){
+    mo.classList.remove("on");
+    moF.src = "about:blank";
+    document.body.style.overflow = "";
+  }
+  var dbs = document.querySelectorAll(".js-doc");
+  for (var d=0; d<dbs.length; d++){
+    (function(b){ b.onclick = function(e){ e.preventDefault(); docOpen(b.dataset.f, b.dataset.t); }; })(dbs[d]);
+  }
+  document.getElementById("docX").onclick = docClose;
+  mo.onclick = function(e){ if (e.target === mo) docClose(); };
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape" && mo.classList.contains("on")) docClose();
+  });
 
   /* --- 일정 현재 단계 표시 --- */
   var its = document.querySelectorAll("#tl .it");
